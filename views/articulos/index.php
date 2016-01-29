@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArticulosSearch */
@@ -19,13 +20,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Articulos', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php \yii\widgets\Pjax::begin(['id' => 'admin-crud-id',
-                                    'timeout' => false,
-                                    'enablePushState' => false,
-                                    'clientOptions' => ['method' => 'POST']]); ?>
+    <?php Pjax::begin(['id' => 'admin-crud-id',
+                       'timeout' => false,
+                       'enablePushState' => false,
+                       'clientOptions' => ['method' => 'POST']]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pager' => [
+            'firstPageLabel' => 'Primero',
+            'lastPageLabel' => 'Último',
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -38,6 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php \yii\widgets\Pjax::end(); ?>
+    <?php Pjax::end(); ?>
 
 </div>
