@@ -19,6 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Articulos', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php \yii\widgets\Pjax::begin(['id' => 'admin-crud-id',
+                                    'timeout' => false,
+                                    'enablePushState' => false,
+                                    'clientOptions' => ['method' => 'POST']]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -34,5 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php \yii\widgets\Pjax::end(); ?>
 
 </div>

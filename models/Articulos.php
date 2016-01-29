@@ -44,8 +44,8 @@ class Articulos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'codigo' => 'Codigo',
-            'descripcion' => 'Descripcion',
+            'codigo' => 'Código',
+            'descripcion' => 'Descripción',
             'precio' => 'Precio',
             'existencias' => 'Existencias',
         ];
