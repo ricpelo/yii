@@ -1,8 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
+use kartik\grid\GridView;
+
+//use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArticulosSearch */
@@ -20,13 +21,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Articulos', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php Pjax::begin(['id' => 'admin-crud-id',
+    <!-- Pjax::begin(['id' => 'admin-crud-id',
                        'timeout' => false,
                        'enablePushState' => false,
-                       'clientOptions' => ['method' => 'POST']]); ?>
+                       'clientOptions' => ['method' => 'POST']]); -->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => true,
+        'pjaxSettings' => [
+            'options' => [
+                'enablePushState' => false,
+                'clientOptions' => ['method' => 'POST'],
+            ],
+        ],
         'pager' => [
             'firstPageLabel' => 'Primero',
             'lastPageLabel' => 'Último',
@@ -43,6 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <?php Pjax::end(); ?>
+    <!-- Pjax::end(); -->
 
 </div>
